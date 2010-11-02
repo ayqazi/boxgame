@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby1.9
 
-require File.dirname(__FILE__) + "/../ruby/Configurator"
+require './' + File.dirname(__FILE__) + "/../ruby/Configurator"
 require 'irb'
 
 IRB.start
