@@ -1,0 +1,4 @@
+A game that may have some boxes in it.
+
+This project is a place for me to test out / play around with some
+game development.
