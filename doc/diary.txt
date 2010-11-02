@@ -1,0 +1,35 @@
+---
+- date: 2009-05-11
+  entry: |
+    Since ruby 1.9 is not supported by the stable version of rubygame,
+    am switching back to ruby 1.8 for now, I think - but it is too
+    slow as people say, and if I want to switch to 1.9 in the future,
+    it will be too painful.  So will keep generic stuff compatible
+    with 1.9 and 1.8 by making sure their tests run on both Ruby
+    versions, and make the switch later.  For the simple puzzle game
+    planned, Ruby 1.8 with rubygame is sufficient.
+- date: 2009-04-12
+  entry: |
+    So when a player holds down the direction keys diagonally, the PC
+    faces the first direction that was held down (so, if they hold down
+    up then left, the PC will go up-left, facing up).
+
+    However, when the player quickly lets go of up-left in this case,
+    and presses down-right, it WAS expected that the keyboard handling
+    would send up-release and then left-release presses first, before
+    sending down-press and then left-press.  So it was assumed that
+    there would only ever be 1 or 2 direction keys pressed at once.
+
+    As it turns out, when the player lets go of up-left and quickly
+    presses down-right, the system actually sends something along the
+    lines of: down-press right-press up-release left-release.  In other
+    words, we cannot state that the PC should face the direction that
+    was last held down on its own - there is never a case where a single
+    direction is held down singularly in this chain of events, so the PC
+    stays facing the direction it was before - in this case, up.
+    i.e. the moonwalk will occur.
+
+    Now we use a stack to keep track of which keys were pressed - the
+    facing direction in the case that there are 2 keys being pressed
+    simultaneously is always the second-most-recent entry if it exists,
+    else the first-most-recent.

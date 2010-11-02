@@ -1,0 +1,6 @@
+Put stuff here to have loaded at the beginning of the application.
+
+Modules here will autoload from the load_path of Configurator.
+
+If a file here depends on another file here, you cannot be sure they
+will be loaded in the right order.

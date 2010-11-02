@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby1.9
+
+require File.dirname(__FILE__) + "/../ruby/Configurator"
+
+Game.initialise
+Game.run

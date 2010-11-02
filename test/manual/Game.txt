@@ -1,0 +1,16 @@
+---
+- Remove data/.ogre.cfg
+- Run GameTest#test_run
+-|
+  Start game, cancel config dialog - make sure exception saying, "User
+  canceled the config dialog!" appears.
+
+---
+- Remove data/.ogre.cfg
+- Run GameTest#test_run
+- Enter valid values into dialog
+- Make sure window appears.
+
+---
+ - Start game
+ - Make sure entries in data/resources.yaml are loaded correctly as resources

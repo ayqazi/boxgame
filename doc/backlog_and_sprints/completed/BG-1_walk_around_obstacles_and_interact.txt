@@ -1,0 +1,35 @@
+BG-1 Walk around obstacles and interact
+=======================================
+
+1. As player, I want to be able to see a world on the screen because
+it draws me into the game and allows a story to develop that keeps me
+playing.(done)
+
+2. As player, I want to see a representation of myself on the screen
+as it will make me empathise with it and allow me to be imersed in the
+game through its point of view, and let it be a focal point of all my
+interactions. (done)
+
+3. As player, I want to move my character around the world as
+exploring a world will make me want to keep playing. (done)
+
+4. As player, I want to not be allowed to move outside the boundaries
+of the world, as that makes things unrealistic and breaks the
+immersion factor I may have developed by moving around the world,
+thinking I was actually in it. (done)
+
+5. As player, I want to quit when I press Escape or the q key, as not
+being able to quit a running program I do not want brings frustration
+and will make me annoyed with the game and not play it again. (done)
+
+6. As player, I do not want to move through obstacles in my path
+without a reason as that makes things unrealistic and breaks immersion
+which will make me lose interest in the game. (done)
+
+7. As player, I want to know which direction I am facing, as this will
+determine how I interact with things and I do not want to be frustrated
+with having to remember the last key I pressed! (done)
+
+8. As player, I want to be able to interact with objects in front of
+me, as an interactive world is an interesting world that I want to
+stay in. (done)

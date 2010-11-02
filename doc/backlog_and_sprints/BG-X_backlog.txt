@@ -1,0 +1,32 @@
+BG-X Backlog
+============
+
+General
+-------
+
+X. As the coder, I want a fixed timestep model governing when game
+logic is processed as it makes time-based calculations simpler and
+lets me replay events later, easing debugging and allowing for more
+test-driven development to take place.
+
+X. As the player, I want the framerate to be decoupled from the game
+logic rate as it make the games smoother to play and a more pleasant
+experience.
+
+X. As the player, I want to use my nice powerful 3D hardware to be
+used to make the game faster, as non-jerky frame-rates make for a more
+pleasant and immersive experience for me.
+
+RPG
+---
+
+X. As the player, I want a more convincing avatar that faces 8
+directions because the more I associate with the game, the more I want
+to play.
+
+X. As the player, I want to see my avatar being animated while it
+carries out various actions because seeing a more dynamic game world
+draws me into it which keeps me playing.
+
+X. As the player, I want to see NPCs as more variety in the game makes
+me want to explore and interact which draws me in and keeps me playing.
