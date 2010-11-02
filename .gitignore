@@ -2,5 +2,4 @@ log/*
 .sconsign.dblite
 *.os
 nbproject
-.bundle
 vendor/gems
