@@ -19,7 +19,7 @@ class Game
         @clock.target_framerate = 25
 
         Rubygame::TTF.setup
-        @ttf = Rubygame::TTF.new((DATADIR + "VeraMono.ttf").to_s, 12)
+        @ttf = Rubygame::TTF.new((DATADIR + "DejaVuSansMono.ttf").to_s, 12)
     end
 
     def self.init_world
