@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './' + File.dirname(__FILE__) + "/../ruby/Configurator"
+require File.expand_path(File.dirname(__FILE__) + "/../ruby/Configurator")
 
 Game.initialise
 Game.run
