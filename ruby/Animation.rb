@@ -31,7 +31,7 @@ class Animation
 
     def count; return @frames.size; end
 
-    def current_frame_index=(idx);
+    def current_frame_index=(idx)
         @current_frame_index = idx
         @current_frame = @frames.fetch(idx)
     end

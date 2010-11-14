@@ -1,5 +1,8 @@
 BASE_DIR = File.dirname(__FILE__)
 
+require BASE_DIR + '/ruby/Configurator'
+require 'spec/rake/spectask'
+
 task :test do
     test_files = Dir[BASE_DIR + '/test/unit/*Test.rb']
     exit_statuses = []
@@ -16,7 +19,10 @@ task :test do
     end
 end
 
-task :spec do
-    SPEC_CMD = ENV['SPEC_CMD'] || '/usr/local/ruby-1.9/bin/spec'
-    system("#{SPEC_CMD} -O #{BASE_DIR}/spec/options #{BASE_DIR}/spec/")
+spec_prereq = []
+
+desc 'Run all specs in spec directory'
+Spec::Rake::SpecTask.new(:spec => spec_prereq) do |t|
+  t.spec_opts = ['--options', "\"#{ROOTDIR}/spec/spec.opts\""]
+  t.spec_files = FileList['spec/**/*/*_spec.rb']
 end

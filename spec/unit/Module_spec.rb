@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/../setup.rb"
+require 'spec_setup.rb'
 
 describe 'Additions for', Module do
     describe 'const_missing' do

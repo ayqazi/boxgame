@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/../setup.rb"
+require 'spec_setup.rb'
 
 context Game do
     it 'raises error when trying to run it uninitialised' do
