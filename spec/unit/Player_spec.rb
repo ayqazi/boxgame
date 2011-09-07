@@ -6,8 +6,8 @@ context Player do
         player = Player.new
         player.position.should == [0, 0]
         player.position = [4, 4]
-        player.rect.should == [4, 4, 16, 24]
-        player.center.should == [12, 16]
+        player.rect.should == [4, 4, 32, 48]
+        player.center.should == [20, 28]
     end
 
     it 'not allow move if colliding with a container-sibling' do
@@ -28,28 +28,28 @@ context Player do
             @container = FakeContainer.new
             @player = Player.new(:container => @container)
             @chest = Chest.new(:position => [3000, 3000], :container => @container)
-            $debug = nil
         end
 
-        it 'not interact when facing down' do
+        it 'should not interact when facing down' do
             @chest.expects(:opened_by).with(@player).never
-            @player.position = [3000, 2970] # 1px gap between xrect and chest
+            @player.position = [3000, 3000-@player.h-5-1] # 1px gap between xrect and chest
             @player.interact
         end
 
-        it 'interact when facing down' do
+        it 'should interact when facing down' do
             @chest.expects(:opened_by).with(@player)
-            @player.position = [3000, 3000-24-5]
+            @player.position = [3000, 3000-@player.h-5]
             @player.interact
         end
 
     end
 
-    it 'not interact with any entities if none are in its "interact" xrects' do
+    it 'should not interact with any entities if none are in its "interact" xrects' do
         container = FakeContainer.new
         player = Player.new(:container => container)
         player.position = [3000, 3000]
-        chest = Chest.new(:position => [3000, 3050], :container => container)
+        chest = Chest.new(:container => container)
+        chest.position = [3000, 3000+player.h+5+1] # Right underneath player's bottom xrect
         chest.is.should == 'closed'
         player.interact
         chest.update

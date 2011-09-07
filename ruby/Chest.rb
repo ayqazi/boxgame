@@ -13,7 +13,7 @@ class Chest
             self.opened_by(who)
         end
 
-        @animation = Animation.new(:image => 'treasure_chest.png', :frames_count => 2)
+        @animation = Animation.new(:image => 'treasure_chest.png', :frames_across => 2, :frames_down => 1)
 
         # copy dimensions from @animation
         self.dimensions = @animation.dimensions

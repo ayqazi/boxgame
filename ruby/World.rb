@@ -6,7 +6,7 @@ class World
         @bg = Rubygame::Surface.load((DATADIR + "land.png").to_s).zoom(4, true)
     end
 
-    def create_walls
+    def create_entities
         # center block thing
         self.add_entity Wall.new(:rect => [1350, 1550, 1200, 800])
 
@@ -20,13 +20,12 @@ class World
         self.add_entity Chest.new(:position => [1000, 2000])
         self.add_entity Chest.new(:position => [3000, 2000])
         self.add_entity Chest.new(:position => [1500, 1000])
-
     end
 
     def initialize
         load_assets
         init_container
-        create_walls
+        create_entities
     end
 
     def draw(canvas, offset)

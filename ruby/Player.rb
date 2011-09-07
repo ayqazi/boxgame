@@ -2,32 +2,34 @@ class Player
 
     include Entity
 
+    FACING_FRAMES = {:up => 9, :down => 0, :left => 3, :right => 6}
+
     def load_assets
         xrects = [
-            {:interact => [16, 0, 5, 24]},
-            {:interact => [16, 0, 5, 24]},
-            {:interact => [16, 0, 5, 24]},
+            {:interact => [0, 48, 32, 5]},
+            {:interact => [0, 48, 32, 5]},
+            {:interact => [0, 48, 32, 5]},
 
-            {:interact => [-5, 0, 5, 24]},
-            {:interact => [-5, 0, 5, 24]},
-            {:interact => [-5, 0, 5, 24]},
+            {:interact => [-5, 0, 5, 48]},
+            {:interact => [-5, 0, 5, 48]},
+            {:interact => [-5, 0, 5, 48]},
 
-            {:interact => [0, -5, 16, 5]},
-            {:interact => [0, -5, 16, 5]},
-            {:interact => [0, -5, 16, 5]},
+            {:interact => [32, 0, 5, 48]},
+            {:interact => [32, 0, 5, 48]},
+            {:interact => [32, 0, 5, 48]},
 
-            {:interact => [0, 24, 16, 5]},
-            {:interact => [0, 24, 16, 5]},
-            {:interact => [0, 24, 16, 5]},
+            {:interact => [0, -5, 32, 5]},
+            {:interact => [0, -5, 32, 5]},
+            {:interact => [0, -5, 32, 5]},
         ]
-        @animation = Animation.new(:image => 'dude_frames.png', :frames_count => 12, :xrects => xrects)
+        @animation = Animation.new(:image => 'test/jacko.png', :frames_across => 3, :frames_down => 4, :xrects => xrects)
     end
 
     def define_variables
-        @animation.current_frame_index = 11
         @facing_direction = :down
+        @animation.current_frame_index = FACING_FRAMES[@facing_direction]
 
-        @rect.dimensions = [16, 24]
+        @rect.dimensions = [32, 48]
 
         @velocity = Vector[0, 0]
 
@@ -116,7 +118,6 @@ class Player
         end
     end
 
-    FACING_FRAMES = {:up => 8, :down => 11, :left => 5, :right => 2}
     def change_facing(new_facing)
         @animation.current_frame_index = FACING_FRAMES.fetch(new_facing)
         @facing_direction = new_facing

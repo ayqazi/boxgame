@@ -50,12 +50,6 @@ class Animation
 
     private
 
-    def get_image
-        image = harg! :image
-        image = Image.new(:filename => image) if image.respond_to?(:to_str)
-        return image
-    end
-
     def init_frames
         xrects = harg(:xrects) || []
 
@@ -71,14 +65,23 @@ class Animation
     def construct_frame_images
         image = get_image
         frame_images = []
-        count = harg! :frames_count
-        frame_width = image.w/count
-        (0..image.w-1).step(frame_width) do |curframe_x|
-            frame_image = image.new_partial(:srcrect => Rect[curframe_x, 0, frame_width, image.h])
-            frame_images << frame_image
+        frames_across, frames_down = hargs! :frames_across, :frames_down
+        frame_width = image.w/frames_across
+        frame_height = image.h/frames_down
+
+        (0...frames_down).each do |frame_down|
+            (0...frames_across).each do |frame_across|
+                frame_images << image.new_partial(:srcrect => Rect[frame_across*frame_width, frame_down*frame_height, frame_width, frame_height])
+            end
         end
 
         return frame_images
+    end
+
+    def get_image
+        image = harg! :image
+        image = Image.new(:filename => image) if image.respond_to?(:to_str)
+        return image
     end
 
     def construct_frames(args)
@@ -92,5 +95,4 @@ class Animation
 
         return frames
     end
-
 end

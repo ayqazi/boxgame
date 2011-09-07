@@ -9,19 +9,18 @@ describe Chest do
     end
 
     describe 'initialization' do
-        it 'accept position' do
+        it 'accepts position' do
             chest = Chest.new(:container => @container, :position => [12, 12])
             chest.position.should == [12, 12]
         end
 
-        it 'get w/h from img' do
+        it 'gets w/h from img' do
             @chest.w.should == 27
             @chest.h.should == 23
         end
     end
 
     describe 'when interacted upon' do
-
         describe 'by Player' do
 
             before do
@@ -31,15 +30,15 @@ describe Chest do
                 @chest.update
             end
 
-            it 'switch state from "closed" to "opened"' do
+            it 'switches state from "closed" to "opened"' do
                 @chest.is.should == 'open'
             end
 
-            it 'be opened_by Player' do
+            it 'should be opened_by Player' do
                 @chest.animation.current_frame_index.should == 1
             end
 
-            it 'not do anything else once opened' do
+            it 'should not do anything else once opened' do
                 lambda { @chest.interacted_upon_by(@player) }.should_not change{@chest}
             end
         end
