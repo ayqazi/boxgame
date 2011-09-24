@@ -2,10 +2,11 @@ class Chest
 
   include Entity
 
-  hargdef :initialize do
     # we only use position, not rect
-    init_entity(:container => harg(:container))
-    self.position = harg :position if harg :position
+  def initialize(args)
+    args.rekey!
+    init_entity(:container => args[:container])
+    self.position = args[:position] if args[:position]
 
     init_state_machine(:states => ['open', 'closed'], :initial_state => 'closed')
 

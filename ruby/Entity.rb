@@ -11,13 +11,14 @@ module Entity
 
   public
 
-  hargdef :init_entity do
-    container = harg :container
-    @name = harg :name
+  def init_entity(args)
+    args.rekey!
+    container = args[:container]
+    @name = args[:name]
     container.add_entity(self) if container
 
-    if harg :rect
-      @rect = Rect.new(harg :rect)
+    if args[:rect]
+      @rect = Rect.new(args[:rect])
     else
       @rect = Rect[0, 0, 0, 0]
     end
@@ -87,8 +88,10 @@ module Entity
 
   def_delegators :@state_machine, :current_state
 
-  hargdef :init_state_machine do
-    states, initial_state = hargs! :states, :initial_state
+  def init_state_machine(args)
+    args.rekey!
+    states = args.fetch(:states)
+    initial_state = args.fetch(:initial_state)
 
     @state_machine = StateMachine.new
     states.each do |state|
