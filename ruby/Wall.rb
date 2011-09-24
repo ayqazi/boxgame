@@ -3,7 +3,6 @@ class Wall
 
     def initialize(args)
         init_entity(args)
-        # we now have @rect and other stuff...
 
         @surface = Rubygame::Surface.create(@rect.dimensions)
         @surface.fill([255, 64, 64, 64])

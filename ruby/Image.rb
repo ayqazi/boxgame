@@ -2,11 +2,17 @@ class Image
 
     class MissingArgument < ArgumentError; end
 
-    hargdef :initialize do
-	@srcrect = harg :srcrect
-	@filename = Pathname.new(harg! :filename)
-        @filename = DATADIR + @filename if @filename.relative?
+    def initialize(args)
+        args.rekey!
+        @srcrect = args[:srcrect]
+
+        @filename = Pathname.new(args.fetch :filename)
+        if @filename.relative?
+            @filename = DATADIR + @filename
+        end
+
         @surface = Rubygame::Surface.load(@filename.to_s)
+
         init_rect
     end
 
@@ -17,19 +23,21 @@ class Image
         @surface.blit(canvas.surface, offset, @srcrect)
     end
 
-    hargdef :new_partial do
+    def new_partial(args = {})
+        args.rekey!
         retval = self.clone
-        new_srcrect = harg :srcrect
-        if new_srcrect
-            retval.srcrect = Rect.new(new_srcrect)
+
+        if args[:srcrect]
+            retval.srcrect = Rect.new(args[:srcrect])
         end
-        next retval
+
+        return retval
     end
 
     def dimensions; return @srcrect.dimensions; end
     include Dimensional
 
-private
+    private
 
     def init_rect
         if @srcrect

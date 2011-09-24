@@ -1,10 +1,9 @@
 class EventsPerPeriodTracker
 
     def initialize(args = {}, &block)
-        using_hargs(args) do
-            @period_length = harg! :period_length
-        end
+        args.rekey!
 
+        @period_length = args.fetch :period_length
         @period_elapsed_callback = block
         @events = 0
         @events_in_last_period = 0.0

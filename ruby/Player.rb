@@ -45,8 +45,9 @@ class Player
         self.movement_mode = :normal
     end
 
-    hargdef :initialize do
-        init_entity :container => harg(:container)
+    def initialize(args = {})
+        args.rekey!
+        init_entity :container => args[:container]
 
         load_assets
         define_variables

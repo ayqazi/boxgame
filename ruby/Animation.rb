@@ -6,9 +6,10 @@ class Animation
 
     # xrects = 'Extra Rects'; bad identifier name :-(
     class Frame
-        hargdef :initialize do
-            @image = harg! :image
-            @xrects = harg! :xrects
+        def initialize(args)
+            args.rekey!
+            @image = args.fetch :image
+            @xrects = args.fetch :xrects
         end
 
         attr_reader :image
@@ -21,8 +22,10 @@ class Animation
 
     class Bug < StandardError; end
 
-    hargdef :initialize do
-        init_frames
+    def initialize(args)
+        args.rekey!
+
+        init_frames(args)
         self.current_frame_index = 0
         @current_frame = @frames[0]
     end
@@ -50,10 +53,10 @@ class Animation
 
     private
 
-    def init_frames
-        xrects = harg(:xrects) || []
+    def init_frames(args)
+        xrects = args[:xrects] || []
 
-        frame_images = construct_frame_images
+        frame_images = construct_frame_images(args)
 
         @frames = construct_frames(:xrects => xrects, :frame_images => frame_images)
 
@@ -62,10 +65,10 @@ class Animation
         end
     end
 
-    def construct_frame_images
-        image = get_image
+    def construct_frame_images(args)
+        image = get_image(args.fetch(:image))
         frame_images = []
-        frames_across, frames_down = hargs! :frames_across, :frames_down
+        frames_across, frames_down = args.fetch(:frames_across), args.fetch(:frames_down)
         frame_width = image.w/frames_across
         frame_height = image.h/frames_down
 
@@ -78,8 +81,7 @@ class Animation
         return frame_images
     end
 
-    def get_image
-        image = harg! :image
+    def get_image(image)
         image = Image.new(:filename => image) if image.respond_to?(:to_str)
         return image
     end

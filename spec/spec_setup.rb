@@ -23,3 +23,12 @@ class Object
         return const_get(class_name)
     end
 end
+
+class Rubygame::Surface
+  def to_display_alpha_for_tests
+    return self
+  end
+
+  alias_method :to_display_alpha_original, :to_display_alpha
+  alias_method :to_display_alpha, :to_display_alpha_for_tests
+end

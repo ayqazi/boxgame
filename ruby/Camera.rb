@@ -1,8 +1,9 @@
 class Camera
-    hargdef :initialize do
-        @world = harg! :world
-        @target = harg! :target
-        @canvas = harg! :canvas
+    def initialize(args)
+        args.rekey!
+        @world = args.fetch :world
+        @target = args.fetch :target
+        @canvas = args.fetch :canvas
     end
 
     def world_draw_offset
