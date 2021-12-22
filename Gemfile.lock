@@ -2,7 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     facets (2.9.2)
-    ffi (1.0.9)
+    ffi (1.15.4)
     metaclass (0.0.1)
     mocha (0.10.0)
       metaclass (~> 0.0.1)
